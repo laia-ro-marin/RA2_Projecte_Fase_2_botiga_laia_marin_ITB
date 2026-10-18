@@ -1,0 +1,63 @@
+body {
+    background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+/*header*/
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    background-color: #334E8C;
+    color: whitesmoke;
+}
+
+h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+nav {
+    margin-left: auto;
+}
+
+nav li {
+    list-style: none;
+    display: flex;
+}
+
+nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/*main*/
+main {
+    border: solid 2px blue;
+}
+
+h2 {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    border: solid 2px green;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+article {
+    background-color: white;
+    width: 500px;
+}
+
+img {
+    width: 250px;
+}
