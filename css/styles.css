@@ -91,3 +91,55 @@ margin-top: 25px;
         margin: 0;
         gap: 50px;
     }
+
+/*fitxa*/
+
+.article_fitxa {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    align-items: end;
+}
+
+.img_fitxa {
+    width: 550px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.div_descripcion_juego {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    height: 100%;
+    width: 700px;
+}
+
+.tabla_controles {
+    width: 1300px;
+    border-collapse: collapse;
+    background-color: white;
+    margin-top: 20px;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.cabecera {
+    background-color: #334E8C;
+    color: whitesmoke;
+}
+
+.celda {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #DDDDDD;
+}
+
+.fila {
+    background-color: white;
+}
+
+.fila2 {
+    background-color: whitesmoke;
+}
