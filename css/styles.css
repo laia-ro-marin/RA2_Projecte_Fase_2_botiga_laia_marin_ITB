@@ -97,23 +97,41 @@ margin-top: 25px;
 .article_fitxa {
     display: flex;
     justify-content: center;
-    gap: 100px;
-    align-items: end;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .img_fitxa {
-    width: 550px;
+    width: 600px;
     margin: 20px;
     border-radius: 20px;
+}
+
+.columna_der {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.trailer_uncharted1 {
+    width: 560px;
+    height: 315px;
+    margin-top: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.trailer_uncharted1 video {
+    width: 100%;
+    height: 100%;
 }
 
 .div_descripcion_juego {
     background-color: white;
     border-radius: 20px;
     padding: 20px;
-    margin: 20px;
-    height: 100%;
-    width: 700px;
+    width: 520px;
 }
 
 .tabla_controles {
