@@ -6,12 +6,12 @@ body {
 
 /*header*/
 header {
+    background-color: #334E8C;
+    color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 200px;
-    background-color: #334E8C;
-    color: whitesmoke;
+    padding: 10px;
 }
 
 h1 {
@@ -22,6 +22,7 @@ h1 {
 
 nav {
     margin-left: auto;
+    margin-right: 20px;
 }
 
 nav li {
@@ -37,20 +38,19 @@ nav a {
 
 /*main*/
 main {
-    border: solid 2px blue;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 h2 {
-    margin: 0;
+    padding-top: 15px;
+    margin-bottom: -15px;
     display: flex;
     justify-content: center;
 }
 
 section {
-    border: solid 2px green;
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -82,4 +82,11 @@ img {
 p {
     margin: 0;
     gap: 50px;
+}
+
+/*footer*/
+footer {
+    background-color: #334E8C;
+    color: whitesmoke;
+    margin-top: 25px;
 }
