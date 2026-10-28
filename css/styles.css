@@ -4,6 +4,11 @@ body {
     margin: 0;
 }
 
+body.oscuro {
+    background-color: #121212;
+    color: #eaeaea;
+}
+
 
 /*header*/
 header {
@@ -47,6 +52,10 @@ nav ul {
 nav a {
     text-decoration: none;
     color: inherit;
+}
+
+#btn_tema {
+    border-radius: 5px;
 }
 
 
@@ -265,3 +274,17 @@ footer {
 .formulario_contacto button:hover {
     background-color: #263B6A;
 }
+
+
+/**/
+
+/* ===== MODO OSCURO ===== */
+
+body.oscuro {
+    background-color: black;
+}
+
+.article_cataleg_oscuro {
+    background-color: #263B6A;
+}
+

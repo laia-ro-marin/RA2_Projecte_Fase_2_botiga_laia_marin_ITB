@@ -1,4 +1,4 @@
-// PART A
+// PART A (CATALEG DINAMIC)
 
 const array_jocs = [
     { titol: "Uncharted: El tesoro de Drake", genere: "Acció i aventura", plataforma: "PlayStation3", preu: 12.39, valoracio: 88, estoc: 37, imatge: "../img/uncharted1_portada_mod.png", descripcio: "Nathan Drake emprèn una aventura a la recerca del llegendari tresor El Dorado, acompanyat per Elena Fisher i Victor Sullivan. Combina exploració, tirotejos, plataformes i puzles en una aventura cinematogràfica per diferents llocs del món"}, //joc 1
@@ -12,6 +12,21 @@ const array_jocs = [
     { titol: "Ghost of Yotei", genere: "Acctió, aventura i món obert", plataforma: "Playstation5", preu: 49.58, valoracio: 86, estoc: 68, imatge: "../img/goy_portada_mod.jpg", descripcio: "Ambientat 300 anys després de Ghost of Tsushima, segueix a Atsu, una mercenària que busca venjar-se dels qui van assassinar a la seva família. L'aventura transcorre al Japó rural del segle XVII i ofereix un món obert amb combat, exploració i noves armes."}, //joc 9
 ]
 
-// PART B
+// PART B (BUSCADOR)
 
-// PART C
+const buscador = document.getElementById("buscador");
+
+
+// PART C (FORMULARI)
+
+// PART D (MODE FOSC)
+
+const btn_tema = document.getElementById("btn_tema");
+
+function canviarTema(){
+    document.body.classList.toggle("oscuro");
+}
+
+btn_tema.addEventListener("click", canviarTema);
+
+console.log("hola");
