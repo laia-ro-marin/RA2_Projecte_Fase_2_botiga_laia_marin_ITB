@@ -28,5 +28,3 @@ function canviarTema(){
 }
 
 btn_tema.addEventListener("click", canviarTema);
-
-console.log("hola");
