@@ -100,6 +100,7 @@ footer {
 
     .section_cataleg {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 30px;
         padding: 10px;
@@ -276,15 +277,27 @@ footer {
 }
 
 
-/**/
 
-/* ===== MODO OSCURO ===== */
 
-body.oscuro {
-    background-color: black;
+
+
+.estoc_baix {
+  border: 2px solid #c0392b;
 }
 
-.article_cataleg_oscuro {
-    background-color: #263B6A;
+
+/* modo oscuro */
+
+body.oscuro .article_cataleg,
+body.oscuro .div_descripcion_juego,
+body.oscuro .formulario_contacto,
+body.oscuro .tabla_controles,
+body.oscuro .fila {
+    background-color: #242424;
+    color: #eaeaea;
 }
 
+body.oscuro .fila2 {
+    background-color: #333333;
+    color: #eaeaea;
+}
