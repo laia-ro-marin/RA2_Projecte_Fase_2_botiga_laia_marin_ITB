@@ -301,3 +301,26 @@ body.oscuro .fila2 {
     background-color: #333333;
     color: #eaeaea;
 }
+
+
+
+.error {
+    border: 2px solid #c0392b;
+}
+
+.missatge_error {
+    color: #c0392b;
+    margin: 0;
+    font-size: 14px;
+}
+
+.targeta_resum {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+body.oscuro .targeta_resum {
+    background-color: #242424;
+    color: #eaeaea;
+}

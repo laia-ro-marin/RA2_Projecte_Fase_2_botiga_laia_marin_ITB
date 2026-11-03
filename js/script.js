@@ -12,32 +12,32 @@ const array_jocs = [
     { titol: "Ghost of Yotei", genere: "Acctió, aventura i món obert", plataforma: "PlayStation5", preu: 49.58, valoracio: 86, estoc: 68, imatge: "img/goy_portada_mod.jpg", descripcio: "Ambientat 300 anys després de Ghost of Tsushima, segueix a Atsu, una mercenària que busca venjar-se dels qui van assassinar a la seva família. L'aventura transcorre al Japó rural del segle XVII i ofereix un món obert amb combat, exploració i noves armes."}, //joc 9
 ];
 
-const TIPUS_IVA = 21;                      
+const TIPUS_IVA = 21;
 
-function calculaPreuAmbIva(preu) {         
-  return preu + (preu * TIPUS_IVA) / 100;  
+function calculaPreuAmbIva(preu) {
+  return preu + (preu * TIPUS_IVA) / 100;
 }
 
-function creaTargeta(joc) {                
-  const targeta = document.createElement("article");  
-  targeta.classList.add("article_cataleg");           
+function creaTargeta(joc) {
+  const targeta = document.createElement("article");
+  targeta.classList.add("article_cataleg");
 
-  const imatge = document.createElement("img");       
-  imatge.classList.add("img_cataleg");                
-  imatge.src = joc.imatge;                            
-  imatge.alt = joc.titol;                             
+  const imatge = document.createElement("img");
+  imatge.classList.add("img_cataleg");
+  imatge.src = joc.imatge;
+  imatge.alt = joc.titol;
 
-  const titol = document.createElement("h3");         
-  titol.textContent = joc.titol;                      
+  const titol = document.createElement("h3");
+  titol.textContent = joc.titol;
 
-  const div = document.createElement("div");          
-  div.classList.add("div_article");                   
+  const div = document.createElement("div");
+  div.classList.add("div_article");
 
-  const genere = document.createElement("p");         
-  genere.classList.add("p_cataleg");                  
-  const genereEt = document.createElement("strong");  
-  genereEt.textContent = "Gènere:";                   
-  genere.append(genereEt, " " + joc.genere);          
+  const genere = document.createElement("p");
+  genere.classList.add("p_cataleg");
+  const genereEt = document.createElement("strong");
+  genereEt.textContent = "Gènere:";
+  genere.append(genereEt, " " + joc.genere);
 
   const plataforma = document.createElement("p");
   plataforma.classList.add("p_cataleg");
@@ -63,45 +63,48 @@ function creaTargeta(joc) {
   descripcioEt.textContent = "Descripció:";
   descripcio.append(descripcioEt, " " + joc.descripcio);
 
-  const estoc = document.createElement("p");          
+  const estoc = document.createElement("p");
   estoc.classList.add("p_cataleg");
-  if (joc.estoc === 0) {                              
-    estoc.textContent = "Esgotat";                    
-    targeta.classList.add("estoc_baix");              
-  } else if (joc.estoc < 5) {                         
+  if (joc.estoc === 0) {
+    estoc.textContent = "Esgotat";
+    targeta.classList.add("estoc_baix");
+  } else if (joc.estoc < 5) {
     estoc.textContent = "Només en queden " + joc.estoc;
     targeta.classList.add("estoc_baix");
-  } else {                                            
+  } else {
     estoc.textContent = "Estoc: " + joc.estoc;
   }
 
-  div.append(genere, plataforma, preu, valoracio, descripcio, estoc); 
-  targeta.append(imatge, titol, div);                 
-  return targeta;                                     
+  div.append(genere, plataforma, preu, valoracio, descripcio, estoc);
+  targeta.append(imatge, titol, div);
+  return targeta;
 }
 
-
-
-function mostraCataleg(llista) {                      
-  const contenidor = document.querySelector("#cataleg");  
-  for (const joc of llista) {                         
-    contenidor.appendChild(creaTargeta(joc));         
+function mostraCataleg(llista) {
+  const contenidor = document.querySelector("#cataleg");
+  for (const joc of llista) {
+    contenidor.appendChild(creaTargeta(joc));
   }
 }
 
-mostraCataleg(array_jocs);                            
+// Només pinta si la pàgina té el catàleg (index.html)
+if (document.querySelector("#cataleg")) {
+  mostraCataleg(array_jocs);
+}
 
 
 //PART B (FILTRAR JOCS)
 
+const contenidor_cataleg = document.querySelector("#cataleg");
+
+if (contenidor_cataleg) {
   const buscador = document.querySelector("#buscador");
   const filtre_plataforma = document.querySelector("#filtre_plataforma");
   const comptador = document.querySelector("#comptador");
-  const contenidor_cataleg = document.querySelector("#cataleg");
 
   function filtra_cataleg() {
     const text = buscador.value.toLowerCase();
-    const plataforma = filtre_plataforma.value;   
+    const plataforma = filtre_plataforma.value;
 
     const filtrats = array_jocs.filter(joc => {
       const coincideix_titol = joc.titol.toLowerCase().includes(text);
@@ -109,8 +112,8 @@ mostraCataleg(array_jocs);
       return coincideix_titol && coincideix_plataforma;
     });
 
-    contenidor_cataleg.textContent = "";   
-    mostraCataleg(filtrats);               
+    contenidor_cataleg.textContent = "";
+    mostraCataleg(filtrats);
 
     if (filtrats.length === 0) {
       comptador.textContent = "No s'ha trobat cap joc";
@@ -119,69 +122,158 @@ mostraCataleg(array_jocs);
     }
   }
 
-  
   buscador.addEventListener("input", filtra_cataleg);
   filtre_plataforma.addEventListener("change", filtra_cataleg);
 
-  filtra_cataleg();   
+  filtra_cataleg();
+}
 
 
-// PART C (FORMULARI CONTACTE)
+// PART C (FORMULARI DE CONTACTE)
 
 const form = document.querySelector("#form");
-const resum = document.querySelector("#resum");
 
-// Crea un missatge d'error sota el camp (i marca el camp amb la classe "error")
-function mostraError(camp, text) {
-  camp.classList.add("error");
-  const missatge = document.createElement("p");
-  missatge.classList.add("missatge-error");
-  missatge.textContent = text;
-  camp.insertAdjacentElement("afterend", missatge);   // el posa just DESPRÉS del camp
-}
-
-// Elimina TOTS els errors anteriors (així no s'acumulen ni es repeteixen)
-function netejaErrors() {
-  for (const missatge of document.querySelectorAll(".missatge-error")) {
-    missatge.remove();
-  }
-  for (const camp of document.querySelectorAll(".error")) {
-    camp.classList.remove("error");
-  }
-}
-
-function validaFormulari() {
+if (form) {
+  const resum = document.querySelector("#resum");
   const nom = document.querySelector("#nom");
   const mail = document.querySelector("#mail");
   const assumpte = document.querySelector("#assumpte");
-  const missatge = document.querySelector("missatge");
+  const missatge = document.querySelector("#missatge");
+  const comptador_caracters = document.querySelector("#comptador_caracters");
 
-  let correcte = true;
+  const camps = [nom, mail, assumpte, missatge];
 
-  netejaErrors();
-
-  if (nom.value.trim().length < 3) {
-    mostraError(nom, "El nom ha de tenir com a minim 3 caràcters");
+  // Crea el missatge d'error just sota el camp i el marca amb la classe "error"
+  function mostra_error(camp, text) {
+    camp.classList.add("error");
+    const p = document.createElement("p");
+    p.classList.add("missatge_error");
+    p.textContent = text;
+    camp.after(p);
   }
+
+  // Treu la classe "error" i el missatge d'un camp (si en té)
+  function neteja_error_camp(camp) {
+    camp.classList.remove("error");
+    const seguent = camp.nextElementSibling;
+    if (seguent && seguent.classList.contains("missatge_error")) {
+      seguent.remove();
+    }
+  }
+
+  function valida_formulari() {
+    let es_valid = true;
+
+    // Esborra els errors anteriors perquè no s'acumulin ni es repeteixin
+    camps.forEach(neteja_error_camp);
+
+    // Nom: obligatori, mínim 3 caràcters sense espais als extrems
+    if (nom.value.trim().length < 3) {
+      mostra_error(nom, "El nom ha de tenir com a mínim 3 caràcters.");
+      es_valid = false;
+    }
+
+    // Correu: obligatori i amb format vàlid (text@text.text)
+    const format_mail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (mail.value.trim() === "") {
+      mostra_error(mail, "El correu és obligatori.");
+      es_valid = false;
+    } else if (!format_mail.test(mail.value.trim())) {
+      mostra_error(mail, "El correu no té un format vàlid.");
+      es_valid = false;
+    }
+
+    // Assumpte: obligatori
+    if (assumpte.value.trim() === "") {
+      mostra_error(assumpte, "L'assumpte és obligatori.");
+      es_valid = false;
+    }
+
+    // Missatge: entre 20 i 300 caràcters
+    const longitud = missatge.value.trim().length;
+    if (longitud < 20 || longitud > 300) {
+      mostra_error(missatge, "El missatge ha de tenir entre 20 i 300 caràcters.");
+      es_valid = false;
+    }
+
+    return es_valid;
+  }
+
+  // Quan l'usuari corregeix un camp, el seu error desapareix
+  camps.forEach(camp => {
+    camp.addEventListener("input", () => neteja_error_camp(camp));
+  });
+
+  // Comptador de caràcters en directe
+  missatge.addEventListener("input", () => {
+    comptador_caracters.textContent = missatge.value.length + " / 300 caràcters";
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (!valida_formulari()) {
+      return;
+    }
+
+    // Llegeix les dades ABANS del reset()
+    const dades = [
+      ["Nom:", nom.value.trim()],
+      ["Correu:", mail.value.trim()],
+      ["Assumpte:", assumpte.value.trim()],
+      ["Missatge:", missatge.value.trim()],
+    ];
+    const nom_persona = nom.value.trim();
+
+    // Buida el resum anterior perquè el nou el substitueixi
+    resum.textContent = "";
+
+    const targeta = document.createElement("article");
+    targeta.classList.add("targeta_resum");
+
+    const titol = document.createElement("h3");
+    titol.textContent = "Gràcies, " + nom_persona + "!";
+
+    const agraiment = document.createElement("p");
+    agraiment.textContent = "Hem rebut el teu missatge. Et respondrem el més aviat possible.";
+
+    targeta.append(titol, agraiment);
+
+    for (const [etiqueta, valor] of dades) {
+      const p = document.createElement("p");
+      const strong = document.createElement("strong");
+      strong.textContent = etiqueta;
+      p.append(strong, " " + valor);
+      targeta.appendChild(p);
+    }
+
+    resum.appendChild(targeta);
+
+    form.reset();
+    comptador_caracters.textContent = "0 / 300 caràcters";  // reset() no dispara l'event input
+  });
 }
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
 
-  if (!validaFormulari()) {
-    return;
-  }
+// PART D (MODE FOSC)
 
-  resum.innerHTML = "";
-  const titol = document.createElement("h3");
-  titol.textContent = "Gràcies " + document.querySelector("#nom").value.trim() + "!";
-
-  form.reset();//---------------------------------------------------
-})
-
-// PART D (MODE FOSC) - falta que funcione en otras paginas
+const clau_tema = "tema";
 const boton_tema = document.querySelector("#btn_tema");
 
-boton_tema.addEventListener("click", function() {
-  document.body.classList.toggle("oscuro");
-});
+// Al carregar la pàgina: si l'última vegada es va triar el mode fosc, el posa
+if (localStorage.getItem(clau_tema) === "oscuro") {
+  document.body.classList.add("oscuro");
+}
+
+if (boton_tema) {
+  boton_tema.addEventListener("click", function() {
+    document.body.classList.toggle("oscuro");
+
+    // Guarda l'elecció al navegador
+    if (document.body.classList.contains("oscuro")) {
+      localStorage.setItem(clau_tema, "oscuro");
+    } else {
+      localStorage.setItem(clau_tema, "clar");
+    }
+  });
+}
