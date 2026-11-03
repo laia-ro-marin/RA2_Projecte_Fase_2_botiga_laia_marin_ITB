@@ -92,10 +92,42 @@ function mostraCataleg(llista) {
 mostraCataleg(array_jocs);                            
 
 
+//PART B (FILTRAR JOCS)
+
+  const buscador = document.querySelector("#buscador");
+  const filtre_plataforma = document.querySelector("#filtre_plataforma");
+  const comptador = document.querySelector("#comptador");
+  const contenidor_cataleg = document.querySelector("#cataleg");
+
+  function filtra_cataleg() {
+    const text = buscador.value.toLowerCase();
+    const plataforma = filtre_plataforma.value;   
+
+    const filtrats = array_jocs.filter(joc => {
+      const coincideix_titol = joc.titol.toLowerCase().includes(text);
+      const coincideix_plataforma = plataforma === "" || joc.plataforma === plataforma;
+      return coincideix_titol && coincideix_plataforma;
+    });
+
+    contenidor_cataleg.textContent = "";   
+    mostraCataleg(filtrats);               
+
+    if (filtrats.length === 0) {
+      comptador.textContent = "No s'ha trobat cap joc";
+    } else {
+      comptador.textContent = "Mostrant " + filtrats.length + " de " + array_jocs.length + " jocs";
+    }
+  }
+
+  
+  buscador.addEventListener("input", filtra_cataleg);
+  filtre_plataforma.addEventListener("change", filtra_cataleg);
+
+  filtra_cataleg();   
+
+// PART D (MODE FOSC) - falta que funcione en otras paginas
 const boton_tema = document.querySelector("#btn_tema");
 
 boton_tema.addEventListener("click", function() {
     document.body.classList.toggle("oscuro");
 });
-
-

@@ -9,7 +9,13 @@
 </head>
 <body>
     <header>
-        <input type="text" id="bucardor" placeholder="Busca un joc...">
+        <input type="text" id="buscador" placeholder="Busca un joc...">
+        <select id="filtre_plataforma">
+            <option value="">Totes</option>
+            <option value="PlayStation3">PlayStation 3</option>
+            <option value="PlayStation4">PlayStation 4</option>
+            <option value="PlayStation5">PlayStation 5</option>
+        </select>
         <h1>Exclusivos Play</h1>
         <nav>
             <ul>
@@ -22,6 +28,7 @@
     </header>
 
     <main>
+        <p id="comptador"></p>
         <section class="section_cataleg" id="cataleg"></section>
         <!--<h2>Els nostres jocs</h2>
         <section class="section_cataleg"> 
