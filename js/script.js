@@ -125,9 +125,63 @@ mostraCataleg(array_jocs);
 
   filtra_cataleg();   
 
+
+// PART C (FORMULARI CONTACTE)
+
+const form = document.querySelector("#form");
+const resum = document.querySelector("#resum");
+
+// Crea un missatge d'error sota el camp (i marca el camp amb la classe "error")
+function mostraError(camp, text) {
+  camp.classList.add("error");
+  const missatge = document.createElement("p");
+  missatge.classList.add("missatge-error");
+  missatge.textContent = text;
+  camp.insertAdjacentElement("afterend", missatge);   // el posa just DESPRÉS del camp
+}
+
+// Elimina TOTS els errors anteriors (així no s'acumulen ni es repeteixen)
+function netejaErrors() {
+  for (const missatge of document.querySelectorAll(".missatge-error")) {
+    missatge.remove();
+  }
+  for (const camp of document.querySelectorAll(".error")) {
+    camp.classList.remove("error");
+  }
+}
+
+function validaFormulari() {
+  const nom = document.querySelector("#nom");
+  const mail = document.querySelector("#mail");
+  const assumpte = document.querySelector("#assumpte");
+  const missatge = document.querySelector("missatge");
+
+  let correcte = true;
+
+  netejaErrors();
+
+  if (nom.value.trim().length < 3) {
+    mostraError(nom, "El nom ha de tenir com a minim 3 caràcters");
+  }
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!validaFormulari()) {
+    return;
+  }
+
+  resum.innerHTML = "";
+  const titol = document.createElement("h3");
+  titol.textContent = "Gràcies " + document.querySelector("#nom").value.trim() + "!";
+
+  form.reset();//---------------------------------------------------
+})
+
 // PART D (MODE FOSC) - falta que funcione en otras paginas
 const boton_tema = document.querySelector("#btn_tema");
 
 boton_tema.addEventListener("click", function() {
-    document.body.classList.toggle("oscuro");
+  document.body.classList.toggle("oscuro");
 });

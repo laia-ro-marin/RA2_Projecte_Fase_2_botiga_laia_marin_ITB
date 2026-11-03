@@ -9,7 +9,6 @@
 </head>
 <body>
     <header>
-        <input type="text">
         <h1>Exclusivos Play</h1>
         <nav>
             <ul>
@@ -24,23 +23,24 @@
     <section class="seccion_contacto">
         <h2>Contacta amb nosaltres</h2>
 
-        <form class="formulario_contacto">
+        <form id="form" class="formulario_contacto" novalidate>
 
-            <label for="nombre">Nom:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="El teu nom" required>
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" placeholder="El teu nom" required>
 
-            <label for="correo">Correu electrònic:</label>
-            <input type="email" id="correo" name="correo" placeholder="El teu correu electrònic" required>
+            <label for="mail">Correu electrònic:</label>
+            <input type="email" id="mail" name="mail" placeholder="El teu correu electrònic" required>
 
-            <label for="asunto">Assumpte:</label>
-            <input type="text" id="asunto" name="asunto" placeholder="De què ens vols parlar?" required>
+            <label for="assumpte">Assumpte:</label>
+            <input type="text" id="assumpte" name="assumpte" placeholder="De què ens vols parlar?" required>
 
-            <label for="mensaje">Missatge:</label>
-            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escriu el teu missatge" required></textarea>
+            <label for="missatge">Missatge:</label>
+            <textarea id="missatge" name="missatge" rows="5" placeholder="Escriu el teu missatge" required></textarea>
 
             <button type="submit">Enviar missatge</button>
 
         </form>
+        <div id="resum"></div>
     </section>
     <footer class="contacte_footer">
         <p>Laia Marin</p>
