@@ -277,32 +277,15 @@ footer {
 }
 
 
+/* css js */
 
-
-
+/* estoc baix */
 
 .estoc_baix {
   border: 2px solid #c0392b;
 }
 
-
-/* modo oscuro */
-
-body.oscuro .article_cataleg,
-body.oscuro .div_descripcion_juego,
-body.oscuro .formulario_contacto,
-body.oscuro .tabla_controles,
-body.oscuro .fila {
-    background-color: #242424;
-    color: #eaeaea;
-}
-
-body.oscuro .fila2 {
-    background-color: #333333;
-    color: #eaeaea;
-}
-
-
+/* formulari js */
 
 .error {
     border: 2px solid #c0392b;
@@ -318,6 +301,22 @@ body.oscuro .fila2 {
     background-color: white;
     padding: 20px;
     border-radius: 20px;
+}
+
+/* modo oscuro */
+
+body.oscuro .article_cataleg,
+body.oscuro .div_descripcion_juego,
+body.oscuro .formulario_contacto,
+body.oscuro .tabla_controles,
+body.oscuro .fila {
+    background-color: #242424;
+    color: #eaeaea;
+}
+
+body.oscuro .fila2 {
+    background-color: #333333;
+    color: #eaeaea;
 }
 
 body.oscuro .targeta_resum {

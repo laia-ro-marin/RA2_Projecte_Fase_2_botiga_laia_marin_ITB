@@ -15,14 +15,14 @@ const array_jocs = [
 const TIPUS_IVA = 21;
 
 function calculaPreuAmbIva(preu) {
-  return preu + (preu * TIPUS_IVA) / 100;
+  return preu + (preu * TIPUS_IVA) / 100; // calcula el preu amb iva del 21% inclos
 }
 
 function creaTargeta(joc) {
-  const targeta = document.createElement("article");
+  const targeta = document.createElement("article"); // crea article
   targeta.classList.add("article_cataleg");
 
-  const imatge = document.createElement("img");
+  const imatge = document.createElement("img"); 
   imatge.classList.add("img_cataleg");
   imatge.src = joc.imatge;
   imatge.alt = joc.titol;
@@ -65,10 +65,10 @@ function creaTargeta(joc) {
 
   const estoc = document.createElement("p");
   estoc.classList.add("p_cataleg");
-  if (joc.estoc === 0) {
+  if (joc.estoc === 0) {                  // si estoc es 0 aplica clase estoc baix i surt missatge indicant que esta esgotat
     estoc.textContent = "Esgotat";
     targeta.classList.add("estoc_baix");
-  } else if (joc.estoc < 5) {
+  } else if (joc.estoc < 5) {             // si estoc es menor a 5 aplica clase estoc baix i surt missatge indicant les unitats que queden
     estoc.textContent = "Només en queden " + joc.estoc;
     targeta.classList.add("estoc_baix");
   } else {
@@ -77,7 +77,7 @@ function creaTargeta(joc) {
 
   div.append(genere, plataforma, preu, valoracio, descripcio, estoc);
   targeta.append(imatge, titol, div);
-  return targeta;
+  return targeta; // retorna targeta
 }
 
 function mostraCataleg(llista) {
@@ -87,7 +87,7 @@ function mostraCataleg(llista) {
   }
 }
 
-// Només pinta si la pàgina té el catàleg (index.html)
+// només es mostra si la pagina te el cataleg
 if (document.querySelector("#cataleg")) {
   mostraCataleg(array_jocs);
 }
@@ -97,14 +97,14 @@ if (document.querySelector("#cataleg")) {
 
 const contenidor_cataleg = document.querySelector("#cataleg");
 
-if (contenidor_cataleg) {
+if (contenidor_cataleg) { // si la pagna te contenidor_cataleg
   const buscador = document.querySelector("#buscador");
   const filtre_plataforma = document.querySelector("#filtre_plataforma");
   const comptador = document.querySelector("#comptador");
 
   function filtra_cataleg() {
-    const text = buscador.value.toLowerCase();
-    const plataforma = filtre_plataforma.value;
+    const text = buscador.value.toLowerCase(); // no fa diferencia entre mayuscules i minuscules
+    const plataforma = filtre_plataforma.value; // filtra per el valor de la plataforma
 
     const filtrats = array_jocs.filter(joc => {
       const coincideix_titol = joc.titol.toLowerCase().includes(text);
@@ -118,7 +118,7 @@ if (contenidor_cataleg) {
     if (filtrats.length === 0) {
       comptador.textContent = "No s'ha trobat cap joc";
     } else {
-      comptador.textContent = "Mostrant " + filtrats.length + " de " + array_jocs.length + " jocs";
+      comptador.textContent = "Mostrant " + filtrats.length + " de " + array_jocs.length + " jocs"; // mostra x jocs de la longitud ttal dels jocs
     }
   }
 
@@ -143,7 +143,7 @@ if (form) {
 
   const camps = [nom, mail, assumpte, missatge];
 
-  // Crea el missatge d'error just sota el camp i el marca amb la classe "error"
+  // crea missatge de error i aplica clase missatge_error
   function mostra_error(camp, text) {
     camp.classList.add("error");
     const p = document.createElement("p");
@@ -152,7 +152,7 @@ if (form) {
     camp.after(p);
   }
 
-  // Treu la classe "error" i el missatge d'un camp (si en té)
+  // tru la clase error
   function neteja_error_camp(camp) {
     camp.classList.remove("error");
     const seguent = camp.nextElementSibling;
@@ -164,16 +164,16 @@ if (form) {
   function valida_formulari() {
     let es_valid = true;
 
-    // Esborra els errors anteriors perquè no s'acumulin ni es repeteixin
+    // borra errors anteriors
     camps.forEach(neteja_error_camp);
 
-    // Nom: obligatori, mínim 3 caràcters sense espais als extrems
+    // fa que el nom sigui obligatori i que contingui mes de 3 caracters
     if (nom.value.trim().length < 3) {
       mostra_error(nom, "El nom ha de tenir com a mínim 3 caràcters.");
       es_valid = false;
     }
 
-    // Correu: obligatori i amb format vàlid (text@text.text)
+    // fa que el correu sigui obligatori i que contingui @ y . (nom@example.com) 
     const format_mail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (mail.value.trim() === "") {
       mostra_error(mail, "El correu és obligatori.");
@@ -260,7 +260,7 @@ if (form) {
 const clau_tema = "tema";
 const boton_tema = document.querySelector("#btn_tema");
 
-// Al carregar la pàgina: si l'última vegada es va triar el mode fosc, el posa
+// Al recaregar la pagina si l'ultim cop en accedir estava seleccionat el mode fosc es queda seleccionat
 if (localStorage.getItem(clau_tema) === "oscuro") {
   document.body.classList.add("oscuro");
 }
@@ -269,7 +269,7 @@ if (boton_tema) {
   boton_tema.addEventListener("click", function() {
     document.body.classList.toggle("oscuro");
 
-    // Guarda l'elecció al navegador
+    // Guarda la alecció del mode en el navegador
     if (document.body.classList.contains("oscuro")) {
       localStorage.setItem(clau_tema, "oscuro");
     } else {
