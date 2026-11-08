@@ -183,13 +183,13 @@ if (form) {
       es_valid = false;
     }
 
-    // Assumpte: obligatori
+    // fa que el asumpte sigui obligatori
     if (assumpte.value.trim() === "") {
       mostra_error(assumpte, "L'assumpte és obligatori.");
       es_valid = false;
     }
 
-    // Missatge: entre 20 i 300 caràcters
+    // fa que el missatge tingui una longitud de entre 20 i 300 carcters
     const longitud = missatge.value.trim().length;
     if (longitud < 20 || longitud > 300) {
       mostra_error(missatge, "El missatge ha de tenir entre 20 i 300 caràcters.");
@@ -199,12 +199,12 @@ if (form) {
     return es_valid;
   }
 
-  // Quan l'usuari corregeix un camp, el seu error desapareix
+  // quan omplim un camp el error desapareix
   camps.forEach(camp => {
     camp.addEventListener("input", () => neteja_error_camp(camp));
   });
 
-  // Comptador de caràcters en directe
+  // conta els caracters en directe
   missatge.addEventListener("input", () => {
     comptador_caracters.textContent = missatge.value.length + " / 300 caràcters";
   });
@@ -216,7 +216,7 @@ if (form) {
       return;
     }
 
-    // Llegeix les dades ABANS del reset()
+    // llegeix les dades abans del reset
     const dades = [
       ["Nom:", nom.value.trim()],
       ["Correu:", mail.value.trim()],
@@ -225,7 +225,7 @@ if (form) {
     ];
     const nom_persona = nom.value.trim();
 
-    // Buida el resum anterior perquè el nou el substitueixi
+    // buida el resum anterior per poder sustituirlo
     resum.textContent = "";
 
     const targeta = document.createElement("article");
@@ -250,7 +250,7 @@ if (form) {
     resum.appendChild(targeta);
 
     form.reset();
-    comptador_caracters.textContent = "0 / 300 caràcters";  // reset() no dispara l'event input
+    comptador_caracters.textContent = "0 / 300 caràcters"; 
   });
 }
 
@@ -260,7 +260,7 @@ if (form) {
 const clau_tema = "tema";
 const boton_tema = document.querySelector("#btn_tema");
 
-// Al recaregar la pagina si l'ultim cop en accedir estava seleccionat el mode fosc es queda seleccionat
+// si al carregar la pagina estava seleccionat el mode focs es queda seleccionat
 if (localStorage.getItem(clau_tema) === "oscuro") {
   document.body.classList.add("oscuro");
 }
@@ -269,7 +269,7 @@ if (boton_tema) {
   boton_tema.addEventListener("click", function() {
     document.body.classList.toggle("oscuro");
 
-    // Guarda la alecció del mode en el navegador
+    // guarda la elecció en el navegador
     if (document.body.classList.contains("oscuro")) {
       localStorage.setItem(clau_tema, "oscuro");
     } else {
