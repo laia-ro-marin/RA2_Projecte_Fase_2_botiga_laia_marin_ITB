@@ -481,4 +481,40 @@ function inicia_cataleg_json() {
            && dades.botiga !== null
            && Array.isArray(dades.botiga.jocsDades);
    }
+
+   // pinta targetes segons busacdor y filtre
+   function pinta_jocs() {
+       const text = buscador.value.toLowerCase();
+       const plataforma = filtre_plataforma.value;
+
+
+       const filtrats = jocs_carregats.filter((joc) => {
+           const coincideix_titol = String(joc.titol).toLowerCase().includes(text);
+           const coincideix_plataforma = plataforma === '' || joc.plataformaOriginal.nom === plataforma;
+           return coincideix_titol && coincideix_plataforma;
+       });
+
+
+       contenidor.textContent = '';
+       filtrats.forEach((joc) => {
+           contenidor.appendChild(crea_targeta_json(joc));
+       });
+
+
+       if (filtrats.length === 0) {
+           comptador.textContent = 'No s\'ha trobat cap joc';
+       } else {
+           comptador.textContent = 'Mostrant ' + filtrats.length + ' de ' + jocs_carregats.length + ' jocs';
+       }
+   }
+
+   function mostra_cataleg(dades) {
+       buida_pagina();
+       const botiga = dades.botiga;
+
+
+       titol_botiga.textContent = botiga.botigaDades.nomBotiga;
+       jocs_carregats = botiga.jocsDades;
+       pinta_jocs();
+   }
 }
