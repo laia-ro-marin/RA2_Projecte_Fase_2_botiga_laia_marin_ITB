@@ -517,4 +517,57 @@ function inicia_cataleg_json() {
        jocs_carregats = botiga.jocsDades;
        pinta_jocs();
    }
+
+   // llegeix fitxer
+   function llegeix_fitxer() {
+       if (entrada.files.length === 0) {
+           mostra_missatge(MISSATGE_INICIAL, false);
+           return;
+       }
+
+       const lector = new FileReader();
+       lector.addEventListener('load', () => {
+           let dades = null;
+
+           // json no valid
+           try {
+               dades = JSON.parse(lector.result);
+           } catch (error) {
+               mostra_missatge('El fitxer no és un JSON vàlid: ' + error.message, true);
+               return;
+           }
+
+           // valid pero claus que no espera
+           if (!te_estructura(dades)) {
+               mostra_missatge('El JSON és vàlid, però no té l\'estructura esperada (botiga i jocsDades).', true);
+               return;
+           }
+
+           // estructura correcte pero falta dada
+           try {
+               mostra_cataleg(dades);
+           } catch (error) {
+               mostra_missatge('El JSON és vàlid, però falta alguna dada d\'un joc: ' + error.message, true);
+           }
+       });
+       lector.readAsText(entrada.files[0]);
+   }
+
+   function refiltra() {
+       if (jocs_carregats.length > 0) {
+           pinta_jocs();
+       }
+   }
+
+   entrada.addEventListener('change', llegeix_fitxer);
+   buscador.addEventListener('input', refiltra);
+   filtre_plataforma.addEventListener('change', refiltra);
+
+   mostra_missatge(MISSATGE_INICIAL, false);
+}
+
+
+// només se executa a catalage_json.html
+if (document.querySelector('#fitxer') !== null) {
+   inicia_cataleg_json();
 }
