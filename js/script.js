@@ -409,4 +409,76 @@ function inicia_cataleg_json() {
        p.appendChild(document.createTextNode(valor));
        return p;
    }
+
+   // crea targetes jocs
+   function crea_targeta_json(joc) {
+       const targeta = document.createElement('article');
+       targeta.classList.add('article_cataleg');
+
+
+       const nom_imatge = imatges_per_codi[joc.codi];
+       if (nom_imatge !== undefined) {
+           const imatge = document.createElement('img');
+           imatge.classList.add('img_cataleg');
+           imatge.src = 'img/' + nom_imatge;
+           imatge.alt = joc.titol;
+           targeta.appendChild(imatge);
+       }
+
+
+       const titol = document.createElement('h3');
+       titol.textContent = joc.titol;
+       targeta.appendChild(titol);
+
+
+       const dades = document.createElement('div');
+       dades.classList.add('div_article');
+
+
+       const preu_amb_iva = calculaPreuAmbIva(joc.preu);
+       const valoracio = joc.valoracio;
+       let text_valoracio = String(valoracio.puntuacio);
+       if (valoracio.sobre100 === true) {
+           text_valoracio = valoracio.puntuacio + '/100';
+       }
+
+
+       dades.appendChild(crea_linia('Codi:', a_text(joc.codi)));
+       dades.appendChild(crea_linia('Gènere:', a_text(joc.genere)));
+       dades.appendChild(crea_linia('Plataforma original:', a_text(joc.plataformaOriginal.nom)));
+       dades.appendChild(crea_linia('Preu (IVA inclòs):', preu_amb_iva.toFixed(2) + '€'));
+       dades.appendChild(crea_linia('Valoració:', text_valoracio));
+       dades.appendChild(crea_linia('Estoc:', a_text(joc.estoc)));
+       dades.appendChild(crea_linia('Descripció:', a_text(joc.descripcio)));
+
+
+       // esgotat
+       if (joc.disponible === false) {
+           targeta.classList.add('esgotat');
+           const esgotat = document.createElement('p');
+           esgotat.classList.add('text_esgotat');
+           esgotat.textContent = 'Esgotat';
+           dades.appendChild(esgotat);
+       }
+
+
+       // estoc baix
+       if (joc.estoc < 5) {
+           targeta.classList.add('estoc_baix');
+       }
+
+
+       targeta.appendChild(dades);
+       return targeta;
+   }
+
+
+   // comprova format json
+   function te_estructura(dades) {
+       return dades !== null
+           && typeof dades === 'object'
+           && dades.botiga !== undefined
+           && dades.botiga !== null
+           && Array.isArray(dades.botiga.jocsDades);
+   }
 }
