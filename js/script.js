@@ -357,7 +357,6 @@ function inicia_cataleg_json() {
        '009': 'goy_portada_mod.jpg'
    };
 
-
    const entrada = document.querySelector('#fitxer');
    const titol_botiga = document.querySelector('#titol_botiga');
    const comptador = document.querySelector('#comptador_json');
@@ -369,5 +368,45 @@ function inicia_cataleg_json() {
 
    function calculaPreuAmbIva(preu) {
        return preu * (1 + TIPUS_IVA / 100);
+   }
+
+   // deixa la pagina buida
+   function buida_pagina() {
+       titol_botiga.textContent = '';
+       comptador.textContent = '';
+       contenidor.textContent = '';
+   }
+
+   function mostra_missatge(text, es_error) {
+       buida_pagina();
+       jocs_carregats = [];
+       const p = document.createElement('p');
+       p.textContent = text;
+       if (es_error) {
+           p.classList.add('missatge_error');
+       }
+       contenidor.appendChild(p);
+   }
+
+   function a_text(valor) {
+       if (Array.isArray(valor)) {
+           return valor.join(', ');
+       }
+       if (valor === undefined || valor === null) {
+           return '-';
+       }
+       return String(valor);
+   }
+
+
+   // crea etiqueta
+   function crea_linia(etiqueta, valor) {
+       const p = document.createElement('p');
+       p.classList.add('p_cataleg');
+       const negreta = document.createElement('strong');
+       negreta.textContent = etiqueta + ' ';
+       p.appendChild(negreta);
+       p.appendChild(document.createTextNode(valor));
+       return p;
    }
 }
